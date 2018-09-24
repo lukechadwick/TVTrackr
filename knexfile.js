@@ -1,19 +1,18 @@
 module.exports = {
-
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './dev.sqlite3'
+      filename: './dev.sqlite3',
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
   },
 
   test: {
     client: 'sqlite3',
     connection: {
-      filename: ':memory:'
+      filename: ':memory:',
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
   },
 
   production: {
@@ -21,10 +20,10 @@ module.exports = {
     connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
-  }
+      tableName: 'knex_migrations',
+    },
+  },
 };

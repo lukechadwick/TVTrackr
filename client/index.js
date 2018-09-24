@@ -1,32 +1,29 @@
 import React from 'react';
-import thunkMiddleware from 'redux-thunk';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-
-import {
-  HashRouter as Router,
-  Route,
-  Link,
-  withRouter
-} from 'react-router-dom';
-
-import App from './components/App';
-import reducers from './reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import registerServiceWorker from './registerServiceWorker';
+import App from './App';
+import rootReducer from './reducers/rootReducer';
 
 const store = createStore(
-  reducers,
-  compose(
-    applyMiddleware(thunkMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(thunk)
+    // other store enhancers if any
   )
 );
 
-render(
-  <Provider store={store}>
-    <Router>
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </Router>
-  </Provider>,
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('app')
 );
+registerServiceWorker();
