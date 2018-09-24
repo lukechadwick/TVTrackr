@@ -13,9 +13,9 @@ import rootReducer from './reducers/rootReducer';
 const store = createStore(
   rootReducer,
   composeWithDevTools(
-    applyMiddleware(thunk)
+    applyMiddleware(thunk),
     // other store enhancers if any
-  )
+  ),
 );
 
 ReactDOM.render(
@@ -24,6 +24,6 @@ ReactDOM.render(
       <App />
     </Provider>
   </BrowserRouter>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );
 registerServiceWorker();
