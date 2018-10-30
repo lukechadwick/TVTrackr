@@ -6,17 +6,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import rootReducer from './reducers/rootReducer';
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(
-    applyMiddleware(thunk),
-    // other store enhancers if any
-  ),
-);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <BrowserRouter>
@@ -26,4 +19,3 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('app'),
 );
-registerServiceWorker();
